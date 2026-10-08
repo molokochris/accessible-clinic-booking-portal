@@ -35,6 +35,18 @@ body {
   line-height: 1.5;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
 header,
 main,
 footer {
@@ -47,7 +59,7 @@ main {
   margin: 0 auto;
 }
 
-main section {
+main {
   margin-block: 2rem;
 }
 
@@ -163,7 +175,7 @@ nav {
 .stats {
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: 2;
+  gap: 1rem;
   margin: 1.5rem 0 0;
   padding: 0;
   list-style: none;
@@ -243,5 +255,92 @@ textarea {
   padding: 0.5rem 1rem;
   outline: var(--focus-ring);
   outline-offset: 2px;
+  background: var(--color-surface);
+}
+
+.services {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.clinical-services {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  /*background: var(--color-surface);*/
+}
+
+.service-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  background: var(--color-surface);
+  list-style: none;
+  padding: 0;
+}
+
+.service-cards li {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+}
+
+.service-cards li div a {
+  font-weight: bold;
+}
+
+.services ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.clinic-card-one {
+  background-color: var(--color-surface-alt);
+  margin-bottom: 1rem;
+}
+
+aside {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+}
+
+aside span {
+  font-weight: bold;
+}
+
+.clinic-card-two span {
+  font-weight: bold;
+}
+
+.location-section {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.location-section ul {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 1rem;
+  padding: 0;
+  /*margin: 0;*/
+}
+
+.location-section li {
+  list-style: none;
+}
+
+.location-map {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-alt);
+  padding: 1rem;
+}
+
+.address-info {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
   background: var(--color-surface);
 }
