@@ -27,18 +27,18 @@
 }
 
 body {
+  margin: 0;
   background: var(--color-bg);
   color: var(--color-text);
   font-family: system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.5;
-  margin: 0;
 }
 
 header,
 main,
 footer {
-  padding: 1rem 1.5rem;
+  padding: 0rem 1.5rem;
 }
 
 /* keep content readable on wide screens */
@@ -66,21 +66,21 @@ a {
   align-items: center;
   gap: 0.75rem;
   color: var(--color-text);
-  text-decoration: none;
   font-weight: 700;
+  text-decoration: none;
 }
 
 .logo {
-  background: var(--color-surface-alt); /* #efeded */
-  border: 1px solid var(--color-border); /* #717782, 4.29:1 */
   padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border); /* #717782, 4.29:1 */
+  background: var(--color-surface-alt); /* #efeded */
 }
 
 .button-group {
-  margin-top: 1.5rem;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 /* shared shape for every button-style link */
@@ -127,9 +127,9 @@ nav {
   flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
-  list-style: none;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .nav-list a {
@@ -143,8 +143,8 @@ nav {
 .nav-list a[aria-current="page"] {
   font-weight: 700;
   text-decoration: underline;
-  text-underline-offset: 0.3em;
   text-decoration-thickness: 3px;
+  text-underline-offset: 0.3em;
 }
 
 /* the button-style link needs its own text colour */
@@ -156,23 +156,23 @@ nav {
 
 .hero {
   padding: 1.5rem;
-  background: var(--color-surface);
   border: 1px solid var(--color-border);
+  background: var(--color-surface);
 }
 
 .stats {
   display: grid;
   grid-template-columns: auto auto auto;
   gap: 2;
-  list-style: none;
   margin: 1.5rem 0 0;
   padding: 0;
+  list-style: none;
 }
 
 .stats li {
-  background: var(--color-surface-alt);
-  border: 1px solid var(--color-border);
   padding: 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
 }
 
 .stat-value {
@@ -182,6 +182,44 @@ nav {
 .stats p {
   margin: 0 0 0.25rem;
 }
+
+.search {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  margin-block: 2rem;
+}
+
+.search label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.search-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.search-row input {
+  flex: 1; /* fills the row so the placeholder isn't cut off */
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.search-row input::placeholder {
+  color: var(--color-text-muted); /* #414751 on #ffffff, well above 4.5:1 */
+  opacity: 1; /* some browsers fade placeholders */
+}
+
+.search-row .button {
+  cursor: pointer;
+}
+
 input,
 select,
 textarea {
@@ -198,11 +236,12 @@ textarea {
   position: absolute;
   left: -999px;
 }
+
 .skip-link:focus-visible {
-  left: 1rem;
   top: 1rem;
-  background: var(--color-surface);
+  left: 1rem;
   padding: 0.5rem 1rem;
   outline: var(--focus-ring);
   outline-offset: 2px;
+  background: var(--color-surface);
 }

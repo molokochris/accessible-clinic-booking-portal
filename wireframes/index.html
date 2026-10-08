@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Poopedi Community Clinic</title>
+    <title>Poopedi Healthcare Clinic</title>
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
@@ -59,6 +59,20 @@
           </li>
         </ul>
       </section>
+
+      <form class="search" role="search" action="services.html" method="get">
+        <label for="service-search">Search clinical services or symptoms</label>
+        <div class="search-row">
+          <input
+            type="search"
+            id="service-search"
+            name="q"
+            placeholder="e.g. asthma review"
+            autocomplete="off"
+          />
+          <button type="submit" class="button button-secondary">Search</button>
+        </div>
+      </form>
 
       <section aria-labelledby="section-title">
         <h2 id="section-title">Section heading</h2>
