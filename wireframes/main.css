@@ -249,6 +249,7 @@ nav {
 
 .search-row {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 0.75rem;
 }
@@ -424,5 +425,164 @@ footer p {
 
   main {
     padding-inline: 1rem;
+  }
+}
+
+/* =========================================================
+   Services page
+   ========================================================= */
+
+/* Hidden visually but still read by screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Checkboxes and radios must NOT inherit the 44px min-height from the
+   generic input rule. The whole <label> is the 44px target instead. */
+input[type="checkbox"],
+input[type="radio"] {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  min-height: 0;
+  margin: 0;
+  accent-color: var(--color-accent); /* 7.49:1 on #ffffff */
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: var(--target-min);
+  cursor: pointer;
+}
+
+.listing {
+  display: grid;
+  grid-template-columns: minmax(14rem, 1fr) minmax(0, 3fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.filters {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.filters h2 {
+  margin: 0 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.filters fieldset {
+  margin: 0;
+  padding: 0 0 0.5rem;
+  border: 0;
+}
+
+.filters details {
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.filters summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--target-min);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.results {
+  min-width: 0;
+}
+
+.results-status {
+  margin: 0 0 1rem;
+  font-weight: 700;
+}
+
+.result-list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.result-list article {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.result-list p {
+  margin: 0 0 0.75rem;
+}
+
+.result-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.result-head h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.result-time {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.pagination p {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Disabled controls are exempt from contrast rules, but kept readable anyway:
+   #414751 on #efeded = 8.02:1 */
+.button:disabled {
+  border-color: var(--color-border);
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+@media (max-width: 60rem) {
+  .listing {
+    grid-template-columns: 1fr;
+  }
+
+  .result-time {
+    text-align: left;
   }
 }
