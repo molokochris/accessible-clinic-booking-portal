@@ -586,3 +586,196 @@ input[type="radio"] {
     text-align: left;
   }
 }
+
+/* =========================================================
+   Booking page
+   ========================================================= */
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+/* the "/" separator is decoration, so it lives in CSS and is not announced */
+.breadcrumb li + li::before {
+  content: "/";
+  margin-right: 0.5rem;
+}
+
+.breadcrumb a,
+.breadcrumb [aria-current="page"] {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+}
+
+.booking {
+  display: grid;
+  grid-template-columns: minmax(14rem, 1fr) minmax(0, 2fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.summary,
+.booking-form {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.summary h2,
+.booking-form h2 {
+  margin: 0 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.summary dl {
+  margin: 0 0 1rem;
+}
+
+.summary dl div {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.summary dt {
+  color: var(--color-text-muted); /* 9.35:1 on #ffffff */
+  font-size: 0.875rem;
+}
+
+.summary dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* ---------- Form fields ---------- */
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.field > label:not(.check) {
+  display: block;
+  font-weight: 700;
+}
+
+.hint {
+  margin: 0.25rem 0 0.5rem;
+  color: var(--color-text-muted); /* 9.35:1 on #ffffff */
+}
+
+/* "(required)" / "(optional)" are text, never colour or asterisk alone */
+.required,
+.optional {
+  font-weight: 400;
+}
+
+.field input[type="text"],
+.field input[type="tel"],
+.field input[type="email"],
+.field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.field textarea {
+  min-height: 7rem;
+  border: 1px solid var(--color-border); /* 4.50:1 on #ffffff */
+  resize: vertical;
+}
+
+/* ---------- Errors ----------
+   Error state is shown by: text ("Error:"), an icon, a thicker border
+   and aria-invalid. Colour is never the only signal (SC 1.4.1). */
+.icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--color-error); /* white on #ba1a1a = 6.46:1 */
+  color: var(--color-on-accent);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.field-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-error); /* 6.46:1 on #ffffff */
+  font-weight: 700;
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border: 3px solid var(--color-error); /* 6.46:1 on #ffffff (UI needs 3:1) */
+}
+
+.error-summary {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  border: 3px solid var(--color-error);
+  background: var(--color-error-bg); /* #ffdad6 */
+  color: var(--color-on-error-bg); /* 7.24:1 on #ffdad6 */
+}
+
+.error-summary h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+.error-summary ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.error-summary a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  color: var(--color-on-error-bg); /* 7.24:1 on #ffdad6, underlined */
+  font-weight: 700;
+}
+
+/* consent checkbox: long label, so align the box to the first line */
+.consent .check {
+  align-items: flex-start;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt); /* text 14.65:1 */
+}
+
+.consent input[type="checkbox"] {
+  margin-top: 0.125rem;
+}
+
+.consent input[aria-invalid="true"] {
+  outline: 3px solid var(--color-error); /* 6.46:1 on #efeded */
+  outline-offset: 2px;
+}
+
+.consent a {
+  color: var(--color-accent); /* 6.42:1 on #efeded */
+}
+
+@media (max-width: 60rem) {
+  .booking {
+    grid-template-columns: 1fr;
+  }
+}
