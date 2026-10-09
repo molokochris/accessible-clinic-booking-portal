@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Poopedi Healthcare Clinic</title>
+    <title>Home | Poopedi Healthcare Clinic</title>
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <header>
-      <a class="brand">
+      <a class="brand" href="index.html">
         <span class="logo">[ Logo ]</span>
         <span class="clinic-name">Poopedi Healthcare Clinic</span>
       </a>
@@ -32,13 +32,15 @@
         <h1>Accessible Community Healthcare Clinic</h1>
         <p>
           Comprehensive primary care, diagnostic clinics, and routine health
-          appointments for local residents
+          appointments for local residents.
         </p>
         <div class="button-group">
           <a class="button button-primary" href="booking.html"
             >Book an appointment</a
           >
-          <a class="button button-secondary" href="#guide">Clinic Guide</a>
+          <a class="button button-secondary" href="#location-title"
+            >Clinic Guide</a
+          >
         </div>
 
         <ul class="stats">
@@ -75,149 +77,140 @@
       </form>
 
       <div class="services">
-        <section class="clinical-services">
-          <h2 id="section-title">Clinical Services</h2>
-          <hr />
+        <section class="clinical-services" aria-labelledby="services-title">
+          <h2 id="services-title">Clinical Services</h2>
           <ul class="service-cards">
             <li>
-              <div>
+              <article>
                 <h3>Standard GP Consultation</h3>
                 <p>Clinician: Dr. Sarah Jenkins</p>
                 <p>Thursday 12 March, 09:30</p>
-              </div>
-              <div>
-                <hr />
-                <a href="#">Book GP Consulation</a>
-              </div>
+                <a href="booking.html">Book GP consultation</a>
+              </article>
             </li>
             <li>
-              <div>
+              <article>
                 <h3>Community Nursing</h3>
                 <p>
-                  Post-operative wound dressing, catheter changes, inections
+                  Post-operative wound dressing, catheter changes, and
+                  injections.
                 </p>
-              </div>
-              <div>
-                <hr />
-                <a href="#">Book Nursing</a>
-              </div>
+                <a href="services.html">Book nursing</a>
+              </article>
             </li>
             <li>
-              <div>
+              <article>
                 <h3>Mental Health Support</h3>
                 <p>
-                  Post-operative wound dressing, catheter changes, inections
+                  Psychological wellbeing practitioners and counselling
+                  referrals.
                 </p>
-              </div>
-              <div>
-                <hr />
-                <a href="#">Self-refer online</a>
-              </div>
+                <a href="services.html">Self-refer online</a>
+              </article>
             </li>
             <li>
-              <div>
+              <article>
                 <h3>Clinical Pharmacy</h3>
                 <p>
-                  Post-operative wound dressing, catheter changes, inections
+                  Medication reviews, repeat prescriptions, and prescription
+                  consultations.
                 </p>
-              </div>
-              <div>
-                <hr />
-                <a href="#">Manage prescriptions</a>
-              </div>
+                <a href="services.html">Manage prescriptions</a>
+              </article>
             </li>
             <li>
-              <div>
-                <h3>Child & Family Health</h3>
+              <article>
+                <h3>Child &amp; Family Health</h3>
                 <p>
-                  Post-operative wound dressing, catheter changes, inections
+                  Childhood immunisations and developmental milestone reviews.
                 </p>
-              </div>
-              <div>
-                <hr />
-                <a href="#">View clinic details</a>
-              </div>
+                <a href="services.html">View child and family clinic details</a>
+              </article>
             </li>
             <li>
-              <div>
+              <article>
                 <h3>Chronic Condition Care</h3>
                 <p>
-                  Post-operative wound dressing, catheter changes, inections
+                  Routine management for diabetes, asthma, and hypertension.
                 </p>
-              </div>
-              <div>
-                <hr />
-                <a href="#">Book annual review</a>
-              </div>
+                <a href="services.html">Book annual review</a>
+              </article>
             </li>
           </ul>
         </section>
 
-        <ul>
-          <li>
-            <aside class="clinic-card-one">
-              <h2>Urgent Care & Emergency</h2>
-              <hr />
-              <p>
-                For acute life-threatening emergencies dial
-                <span>999</span> immediately. For urgent clinical triage call
-                <span>0800 011 9200</span>.
-              </p>
-              <hr />
-              <p>
-                Walk-in urgent review is subjeet to primary triage assessment.
-              </p>
-            </aside>
-          </li>
-          <li>
-            <aside class="clinic-card-two">
-              <h3>Clinic Status</h3>
-              <p><span>Operating Status:</span> Doors open until 18:30</p>
-              <hr />
-              <p>
-                <span> Next Available Slot:</span> Thursday 12 March, 09:30 with
-                Dr. Sarah Jenkins
-              </p>
-              <button class="button button-secondary">
-                Check Triage Queue
-              </button>
-            </aside>
-          </li>
-        </ul>
-      </div>
-      <section class="location-section">
-        <h2>Clinic Location & Physical Access</h2>
-        <hr />
-        <ul>
-          <li class="location-map"></li>
-          <li class="address-info">
-            <h3>Address & Arrival</h3>
-
+        <aside class="side-panels" aria-label="Urgent care and clinic status">
+          <section class="urgent" aria-labelledby="urgent-title">
+            <h2 id="urgent-title">Urgent Care &amp; Emergency</h2>
             <p>
-              Council Central Health Center 100 Civic Parade, Suite 4 Healtheare
-              District, HC1 2AB
+              For acute life-threatening emergencies dial
+              <strong>999</strong> immediately. For urgent clinical triage call
+              <a href="tel:08000119200"><strong>0800 011 9200</strong></a
+              >.
             </p>
-            <hr />
-            <h3>Access Instructions:</h3>
+            <p>
+              Walk-in urgent review is subject to primary triage assessment.
+            </p>
+          </section>
 
+          <section class="status" aria-labelledby="status-title">
+            <h2 id="status-title">Clinic Status</h2>
+            <p><strong>Operating status:</strong> Doors open until 18:30</p>
+            <p>
+              <strong>Next available slot:</strong> Thursday 12 March, 09:30
+              with Dr. Sarah Jenkins
+            </p>
+            <a class="button button-secondary" href="services.html"
+              >Check triage queue</a
+            >
+          </section>
+        </aside>
+      </div>
+
+      <section class="location-section" aria-labelledby="location-title">
+        <h2 id="location-title">Clinic Location &amp; Physical Access</h2>
+        <div class="location-grid">
+          <div
+            class="location-map"
+            role="img"
+            aria-label="Map of the clinic location and access ramp (placeholder)"
+          >
+            [ Map placeholder: clinic location &amp; access ramp ]
+          </div>
+          <div class="address-info">
+            <h3>Address &amp; arrival</h3>
+            <address>
+              Council Central Health Centre<br />
+              100 Civic Parade, Suite 4<br />
+              Healthcare District, HC1 2AB
+            </address>
+
+            <h3>Access instructions</h3>
             <p>
               Dedicated step-free access ramp located at the East entrance.
               Automated doors, wide corridors, and low-counter reception desks
               are fitted throughout.
             </p>
-            <hr />
-            <h3>Public Transit & Parking:</h3>
+
+            <h3>Public transit &amp; parking</h3>
             <p>
-              Bus lines 4, 12, and 45 stop outside Civic Parade. 6 designated
-              accessible parking bays available in North Lot.
+              Bus lines 4, 12, and 45 stop outside Civic Parade. Six designated
+              accessible parking bays are available in the North Lot.
             </p>
-          </li>
-        </ul>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer>
-      <p>&copy; 2026 Community Clinic</p>
+      <nav aria-label="Footer">
+        <ul class="footer-list">
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Terms of service</a></li>
+          <li><a href="#">Accessibility statement</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2026 Poopedi Healthcare Clinic</p>
     </footer>
   </body>
 </html>
