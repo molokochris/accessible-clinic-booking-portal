@@ -10,23 +10,22 @@
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <header>
-      <a class="brand">
+      <a class="brand" href="index.html">
         <span class="logo">[ Logo ]</span>
-        <span class="clinic-name"> Poopedi Community Clinic</span>
+        <span class="clinic-name">Poopedi Healthcare Clinic</span>
       </a>
       <nav aria-label="Primary">
         <ul class="nav-list">
           <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
+          <li><a href="services.html" aria-current="page">Services</a></li>
           <li>
-            <a class="button" href="booking.html" aria-current="page"
+            <a class="button button-primary" href="booking.html"
               >Book an appointment</a
             >
           </li>
         </ul>
       </nav>
     </header>
-
     <main id="main">
       <h1>Page heading</h1>
 
@@ -42,7 +41,14 @@
     </main>
 
     <footer>
-      <p>&copy; 2026 Community Clinic</p>
+      <nav aria-label="Footer">
+        <ul class="footer-list">
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Terms of service</a></li>
+          <li><a href="#">Accessibility statement</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2026 Poopedi Healthcare Clinic</p>
     </footer>
   </body>
 </html>
