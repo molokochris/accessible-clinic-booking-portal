@@ -1,8 +1,25 @@
+# Poopedi Healthcare Clinic: Accessible Booking Portal
+
+Capstone 4 (ticket MD-2026-0143), Community Healthcare Clinic domain.
+
+**Live site:** https://poopedi-healthcare-clinic.vercel.app
+
+- Part A (wireframes, persona, WCAG matrix): `/wireframes`
+- Part B (React SPA, tests, deployment config): repository root
+- Part C (write-up): this file
+
+```
+npm install
+npm run dev     # local development server
+npm test        # 53 component and axe tests
+npm run build   # production build (Vercel: vercel.json, Netlify: public/_redirects)
+```
+
 ## Screenshots
 
-![Homepage](screenshots/Screenshot_0.webp)
-![Services listing with filters](screenshots/Screenshot_1.webp)
-![Booking form](screenshots/Screenshot_2.webp)
+![PageSpeed Insights for the live site, mobile: Performance 100, Accessibility 100, Best Practices 100, SEO 91](screenshots/Screenshot_0.webp)
+![PageSpeed Insights accessibility audit, mobile: 100](screenshots/Screenshot_1.webp)
+![PageSpeed Insights accessibility audit, desktop: 100](screenshots/Screenshot_2.webp)
 
 ## 1. Accessibility trade-off analysis
 
@@ -26,19 +43,23 @@
 | --- | --- |
 | Vitest + React Testing Library + user-event | 53 of 53 pass |
 | jest-axe (home, services, collapsed, empty, booking, error, dialog, confirmation, `/book`, 404) | 0 violations |
-| Lighthouse 13.5.0 accessibility (`/`, `/services`, `/book/standard-gp-consultation`) | 100, 100, 100 |
+| Lighthouse 13.5.0 accessibility, local build (`/`, `/services`, `/book/standard-gp-consultation`) | 100, 100, 100 |
 | axe-core in real Chromium, including colour contrast, 8 states | 0 violations |
+| PageSpeed Insights (Lighthouse) on the live site, 12 Oct 2026 | Accessibility 100 on mobile and desktop (screenshots above) |
 
 jsdom cannot measure contrast, so that rule is off in the unit tests and covered by the real-browser axe run and Lighthouse.
 
-**Keyboard tab sequence (Chromium, automated check):** the first Tab reaches "Skip to main content"; a failed submit focuses the error summary; the dialog opens with focus on its heading; Escape closes it and focus returns to "Confirm appointment"; confirming moves focus to the confirmation `<h1>`; the skip link is unreachable while the modal is open.
+**Manual keyboard tab-sequence log** (Chromium, Tab only, no mouse):
 
-**Manual screen reader logs:**
+- **Home:** Skip link, logo, Home, Services, Book an appointment, Find an appointment, Clinic guide, search box, Search, then the service card links in visual order.
+- **Services:** Skip link, header links, search box, Search, "Urgency level" accordion button and its checkboxes, "Service type" accordion and checkboxes, "Day available" accordion and the two day buttons, Apply filters, Clear filters.
+- **Booking:** Skip link, header links, breadcrumb, "Change practitioner or time", Full name, Telephone, Email, Reason, consent checkbox, privacy policy link, Confirm appointment, Cancel and return, footer links, then focus leaves the page (browser UI) and returns to the skip link. No keyboard trap.
+- **Behaviour:** Enter and Space both toggle accordions (`aria-expanded`) and day buttons (`aria-pressed`). A failed submit focuses the error summary. The dialog opens with focus on its heading, Escape closes it and returns focus to "Confirm appointment", and confirming moves focus to the confirmation `<h1>`.
+
+**Manual screen reader log:**
 
 | Screen reader / browser | Flow tested | Result | Issues found |
 | --- | --- | --- | --- |
-| NVDA + Firefox | Filter, paginate, book | Filters apply on button press with single polite announcement of result count and filter number. Pagination moves focus to results heading and announces page number. Booking: errors announced on blur only; invalid submit focuses error summary; dialog opens focused on heading, Escape returns focus to Confirm button; confirmation focuses page h1. Skip link and heading focus on route change work as expected. | None |
-| VoiceOver + Safari | Filter, paginate, book | Same as NVDA: apply-on-submit filtering announces once, pagination focus + announcement, form error summary focus, native dialog focus management and Escape handling, confirmation h1 focus all behave correctly. Live regions and aria-pressed on day chips read properly. | None |
-| Orca + Firefox (optional) | Booking form errors | On blur of invalid fields, error message is announced via the polite live region. Correcting a previously invalid field announces "is now valid". Failed submit moves focus to the error summary without double-reading. Consent checkbox error is associated correctly. | None |
+| TalkBack + Chrome (Android phone) | Filter, paginate, book | Flow completed using swipe navigation and double-tap activation; announcements and focus moves worked as expected. | None noticed |
 
-Automated tools catch roughly a third of accessibility problems, so the manual rows above are the real sign-off. Results above are based on code review of the ARIA, focus management and live-region implementation plus the automated keyboard sequence checks; full hands-on AT sessions confirmed the expected announcements and focus moves with no blocking issues.
+Only TalkBack was tested by hand. NVDA, VoiceOver and Orca were not available, so no results are claimed for them. Automated tools catch only part of all accessibility problems, so the hand testing above matters more than the scores.
