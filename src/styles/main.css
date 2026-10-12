@@ -1,0 +1,945 @@
+/* =========================================================
+   Palette. Every contrast ratio below was computed with the
+   WCAG 2.1 relative-luminance formula.
+   Targets: body text >= 4.5:1, large text >= 3:1,
+   UI borders / focus rings >= 3:1 (SC 1.4.3, 1.4.11)
+   ========================================================= */
+:root {
+  /* ---- Surfaces ---- */
+  --color-bg: #fbf9f9; /* page background */
+  --color-surface: #ffffff; /* header, cards, form panels */
+  --color-surface-alt: #efeded; /* grey placeholder boxes, urgent panel */
+
+  /* ---- Text ---- */
+  --color-text: #1b1c1c; /* 16.28:1 on #fbf9f9, 17.08:1 on #ffffff, 14.65:1 on #efeded */
+  --color-text-muted: #414751; /* 8.92:1 on #fbf9f9, 9.35:1 on #ffffff, 8.02:1 on #efeded */
+
+  /* ---- Accent (links, buttons, focus) ---- */
+  --color-accent: #005796; /* 7.14:1 on #fbf9f9, 7.49:1 on #ffffff, 6.42:1 on #efeded */
+  --color-on-accent: #ffffff; /* 7.49:1 on #005796 (primary button text) */
+
+  /* ---- Errors (used on booking page) ---- */
+  --color-error: #ba1a1a; /* 6.16:1 on #fbf9f9, 6.46:1 on #ffffff */
+  --color-error-bg: #ffdad6;
+  --color-on-error-bg: #93000a; /* 7.24:1 on #ffdad6 */
+
+  /* ---- Borders ---- */
+  --color-border: #717782; /* 4.29:1 on #fbf9f9, 4.50:1 on #ffffff, 3.86:1 on #efeded (UI needs 3:1) */
+  --color-divider: #c1c7d2; /* 1.62:1: decorative dividers ONLY, never inputs/buttons */
+
+  /* ---- Sizing ---- */
+  --focus-ring: 3px solid var(--color-accent); /* 7.14:1 on #fbf9f9 (needs 3:1) */
+  --target-min: 2.75rem; /* 44px minimum touch target */
+}
+
+/* ---------- Base ---------- */
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
+/* Links keep an underline so they are not identified by colour alone
+   (#005796 vs body text #1b1c1c is only 2.28:1, SC 1.4.1).
+   Navigation, brand and buttons opt out below. */
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* Visible focus on every interactive element (SC 2.4.7).
+   Never remove without replacement. */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  background: var(--color-surface);
+}
+
+/* ---------- Layout ---------- */
+header,
+footer {
+  padding: 1rem 1.5rem;
+}
+
+main {
+  max-width: 75rem; /* keeps content readable on wide screens */
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+main h1,
+main h2 {
+  margin-block: 0 1rem;
+}
+
+/* ---------- Header & navigation ---------- */
+header {
+  display: flex;
+  flex-wrap: wrap; /* nav drops below the brand on narrow screens */
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface); /* #ffffff */
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text); /* 17.08:1 on #ffffff */
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.logo {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border); /* 3.86:1 on #efeded */
+  background: var(--color-surface-alt);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list,
+.footer-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a,
+.footer-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min); /* 44px touch target */
+  padding: 0 0.75rem;
+}
+
+.nav-list a {
+  text-decoration: none;
+}
+
+/* current page: not colour alone (SC 1.4.1) */
+.nav-list a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.3em;
+}
+
+/* ---------- Buttons (links or <button>) ---------- */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--target-min);
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--color-accent);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* primary: white on #005796 = 7.49:1 */
+.button-primary {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+/* secondary: #005796 on #ffffff = 7.49:1 */
+.button-secondary {
+  background: var(--color-surface);
+  color: var(--color-accent);
+}
+
+/* ---------- Hero & stats ---------- */
+.hero {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(14rem, 1fr)
+  ); /* reflows to 1 column */
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stats li {
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt); /* text 14.65:1 */
+}
+
+.stats p {
+  margin: 0 0 0.25rem;
+}
+
+.stat-label {
+  color: var(--color-text-muted); /* 8.02:1 on #efeded */
+}
+
+.stat-value {
+  font-weight: 700;
+}
+
+/* ---------- Search ---------- */
+.search {
+  margin-block: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.search label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.search-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+input,
+select,
+textarea {
+  min-height: var(--target-min);
+  border: 1px solid var(--color-border); /* 4.50:1 on #ffffff */
+}
+
+.search-row input {
+  flex: 1 1 12rem; /* fills the row; wraps under the button on narrow screens */
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.search-row input::placeholder {
+  color: var(--color-text-muted); /* 9.35:1 on #ffffff */
+  opacity: 1; /* some browsers fade placeholders */
+}
+
+/* ---------- Services + side panels ---------- */
+.services {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 1.5rem;
+}
+
+.clinical-services,
+.side-panels section,
+.location-section {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+/* decorative rule under panel headings (borders carry no information) */
+.clinical-services h2,
+.side-panels h2,
+.location-section h2 {
+  margin: 0 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-cards li {
+  display: flex;
+}
+
+.service-cards article {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.service-cards h3 {
+  margin: 0 0 0.5rem;
+}
+
+.service-cards p {
+  margin: 0 0 0.5rem;
+}
+
+.service-cards a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  margin-top: auto; /* pins the link to the bottom of the card */
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-divider);
+  font-weight: 700;
+}
+
+.side-panels {
+  display: grid;
+  gap: 1rem;
+}
+
+.side-panels p {
+  margin: 0 0 0.75rem;
+}
+
+.side-panels .urgent {
+  background: var(--color-surface-alt); /* text 14.65:1, link 6.42:1 */
+}
+
+/* ---------- Location ---------- */
+.location-section {
+  margin-bottom: 1.5rem;
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 1rem;
+}
+
+.location-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 16rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted); /* 8.02:1 on #efeded */
+  text-align: center;
+}
+
+.address-info {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.address-info h3 {
+  margin: 0 0 0.5rem;
+}
+
+.address-info h3:not(:first-child) {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-divider);
+}
+
+.address-info p,
+.address-info address {
+  margin: 0;
+  font-style: normal;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+footer p {
+  margin: 0.5rem 0 0;
+}
+
+/* ---------- Reflow: single column at narrow widths / 400% zoom (SC 1.4.10) ---------- */
+@media (max-width: 60rem) {
+  .services,
+  .location-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 30rem) {
+  header,
+  footer {
+    padding-inline: 1rem;
+  }
+
+  main {
+    padding-inline: 1rem;
+  }
+}
+
+/* =========================================================
+   Services page
+   ========================================================= */
+
+/* Hidden visually but still read by screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Checkboxes and radios must NOT inherit the 44px min-height from the
+   generic input rule. The whole <label> is the 44px target instead. */
+input[type="checkbox"],
+input[type="radio"] {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  min-height: 0;
+  margin: 0;
+  accent-color: var(--color-accent); /* 7.49:1 on #ffffff */
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: var(--target-min);
+  cursor: pointer;
+}
+
+.listing {
+  display: grid;
+  grid-template-columns: minmax(14rem, 1fr) minmax(0, 3fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.filters {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.filters h2 {
+  margin: 0 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.filters fieldset {
+  margin: 0;
+  padding: 0 0 0.5rem;
+  border: 0;
+}
+
+.filters details {
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.filters summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--target-min);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.results {
+  min-width: 0;
+}
+
+.results-status {
+  margin: 0 0 1rem;
+  font-weight: 700;
+}
+
+.result-list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.result-list article {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.result-list p {
+  margin: 0 0 0.75rem;
+}
+
+.result-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.result-head h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.result-time {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.pagination p {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Disabled controls are exempt from contrast rules, but kept readable anyway:
+   #414751 on #efeded = 8.02:1 */
+.button:disabled {
+  border-color: var(--color-border);
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+@media (max-width: 60rem) {
+  .listing {
+    grid-template-columns: 1fr;
+  }
+
+  .result-time {
+    text-align: left;
+  }
+}
+
+/* =========================================================
+   Booking page
+   ========================================================= */
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+/* the "/" separator is decoration, so it lives in CSS and is not announced */
+.breadcrumb li + li::before {
+  content: "/";
+  margin-right: 0.5rem;
+}
+
+.breadcrumb a,
+.breadcrumb [aria-current="page"] {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+}
+
+.booking {
+  display: grid;
+  grid-template-columns: minmax(14rem, 1fr) minmax(0, 2fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.summary,
+.booking-form {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.summary h2,
+.booking-form h2 {
+  margin: 0 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.summary dl {
+  margin: 0 0 1rem;
+}
+
+.summary dl div {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.summary dt {
+  color: var(--color-text-muted); /* 9.35:1 on #ffffff */
+  font-size: 0.875rem;
+}
+
+.summary dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* ---------- Form fields ---------- */
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.field > label:not(.check) {
+  display: block;
+  font-weight: 700;
+}
+
+.hint {
+  margin: 0.25rem 0 0.5rem;
+  color: var(--color-text-muted); /* 9.35:1 on #ffffff */
+}
+
+/* "(required)" / "(optional)" are text, never colour or asterisk alone */
+.required,
+.optional {
+  font-weight: 400;
+}
+
+.field input[type="text"],
+.field input[type="tel"],
+.field input[type="email"],
+.field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.field textarea {
+  min-height: 7rem;
+  border: 1px solid var(--color-border); /* 4.50:1 on #ffffff */
+  resize: vertical;
+}
+
+/* ---------- Errors ----------
+   Error state is shown by: text ("Error:"), an icon, a thicker border
+   and aria-invalid. Colour is never the only signal (SC 1.4.1). */
+.icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--color-error); /* white on #ba1a1a = 6.46:1 */
+  color: var(--color-on-accent);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.field-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-error); /* 6.46:1 on #ffffff */
+  font-weight: 700;
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border: 3px solid var(--color-error); /* 6.46:1 on #ffffff (UI needs 3:1) */
+}
+
+.error-summary {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  border: 3px solid var(--color-error);
+  background: var(--color-error-bg); /* #ffdad6 */
+  color: var(--color-on-error-bg); /* 7.24:1 on #ffdad6 */
+}
+
+.error-summary h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+.error-summary ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.error-summary a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  color: var(--color-on-error-bg); /* 7.24:1 on #ffdad6, underlined */
+  font-weight: 700;
+}
+
+/* consent checkbox: long label, so align the box to the first line */
+.consent .check {
+  align-items: flex-start;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt); /* text 14.65:1 */
+}
+
+.consent input[type="checkbox"] {
+  margin-top: 0.125rem;
+}
+
+.consent input[aria-invalid="true"] {
+  outline: 3px solid var(--color-error); /* 6.46:1 on #efeded */
+  outline-offset: 2px;
+}
+
+.consent a {
+  color: var(--color-accent); /* 6.42:1 on #efeded */
+}
+
+@media (max-width: 60rem) {
+  .booking {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   React app additions
+   ========================================================= */
+
+/* ---------- Accordion (filter groups) ---------- */
+.filter-group {
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.filter-group h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: var(--target-min);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text); /* 17.08:1 on #ffffff */
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.filter-group fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 0.75rem;
+  border: 0;
+}
+
+/* ---------- Toggle buttons (aria-pressed) ---------- */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--target-min);
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--color-accent);
+  background: var(--color-surface);
+  color: var(--color-accent); /* 7.49:1 on #ffffff */
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Pressed state: fill AND a visible check mark, never colour alone */
+.chip[aria-pressed="true"] {
+  background: var(--color-accent);
+  color: var(--color-on-accent); /* 7.49:1 */
+}
+
+.chip-mark {
+  display: inline-block;
+  min-width: 1ch;
+}
+
+/* ---------- Result badges, empty state ---------- */
+.badge {
+  display: inline-block;
+  margin: 0 0 0.75rem;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt); /* text 14.65:1 */
+  font-weight: 700;
+}
+
+.empty-state {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.empty-state h3 {
+  margin-top: 0;
+}
+
+/* ---------- Modal dialog ---------- */
+dialog {
+  box-sizing: border-box;
+  width: calc(100% - 2rem);
+  max-width: 36rem;
+  padding: 1.5rem;
+  border: 3px solid var(--color-accent);
+  background: var(--color-surface);
+  color: var(--color-text); /* 17.08:1 on #ffffff */
+}
+
+dialog::backdrop {
+  background: rgb(27 28 28 / 0.65);
+}
+
+dialog h2 {
+  margin: 0 0 1rem;
+}
+
+.details-list {
+  margin: 0 0 1rem;
+}
+
+.details-list div {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.details-list dt {
+  color: var(--color-text-muted); /* 9.35:1 on #ffffff */
+  font-size: 0.875rem;
+}
+
+.details-list dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* ---------- Confirmation ---------- */
+.success-banner {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border: 3px solid var(--color-accent);
+  background: var(--color-surface);
+}
+
+.success-banner h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+}
+
+.icon-success {
+  background: var(--color-accent); /* white on #005796 = 7.49:1 */
+}
+
+.reference {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* The confirmation page stacks its two panels with a gap */
+.success-banner + .summary {
+  margin-bottom: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
