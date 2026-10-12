@@ -1,5 +1,7 @@
 # Poopedi Healthcare Clinic: Accessible Booking Portal
 
+live site at:[Poopedi Healthcare Clinic](https://poopedi-healthcare-clinic.vercel.app)
+
 Capstone 4 (MD-2026-0143). Part A wireframes are in `/wireframes`. Part B is this React SPA.
 
 ```
