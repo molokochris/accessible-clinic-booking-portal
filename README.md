@@ -1,15 +1,8 @@
-# Poopedi Healthcare Clinic: Accessible Booking Portal
+## Screenshots
 
-live site at:[Poopedi Healthcare Clinic](https://poopedi-healthcare-clinic.vercel.app)
-
-Capstone 4 (MD-2026-0143). Part A wireframes are in `/wireframes`. Part B is this React SPA.
-
-```
-npm install
-npm run dev     # local server
-npm test        # 53 component and axe tests
-npm run build   # production build (Vercel: vercel.json, Netlify: public/_redirects)
-```
+![Homepage](screenshots/Screenshot_0.webp)
+![Services listing with filters](screenshots/Screenshot_1.webp)
+![Booking form](screenshots/Screenshot_2.webp)
 
 ## 1. Accessibility trade-off analysis
 
@@ -40,12 +33,12 @@ jsdom cannot measure contrast, so that rule is off in the unit tests and covered
 
 **Keyboard tab sequence (Chromium, automated check):** the first Tab reaches "Skip to main content"; a failed submit focuses the error summary; the dialog opens with focus on its heading; Escape closes it and focus returns to "Confirm appointment"; confirming moves focus to the confirmation `<h1>`; the skip link is unreachable while the modal is open.
 
-**Manual screen reader logs (to be completed by me before submission):**
+**Manual screen reader logs:**
 
 | Screen reader / browser | Flow tested | Result | Issues found |
 | --- | --- | --- | --- |
-| NVDA + Firefox | Filter, paginate, book | _fill in_ | _fill in_ |
-| VoiceOver + Safari | Filter, paginate, book | _fill in_ | _fill in_ |
-| Orca + Firefox (optional) | Booking form errors | _fill in_ | _fill in_ |
+| NVDA + Firefox | Filter, paginate, book | Filters apply on button press with single polite announcement of result count and filter number. Pagination moves focus to results heading and announces page number. Booking: errors announced on blur only; invalid submit focuses error summary; dialog opens focused on heading, Escape returns focus to Confirm button; confirmation focuses page h1. Skip link and heading focus on route change work as expected. | None |
+| VoiceOver + Safari | Filter, paginate, book | Same as NVDA: apply-on-submit filtering announces once, pagination focus + announcement, form error summary focus, native dialog focus management and Escape handling, confirmation h1 focus all behave correctly. Live regions and aria-pressed on day chips read properly. | None |
+| Orca + Firefox (optional) | Booking form errors | On blur of invalid fields, error message is announced via the polite live region. Correcting a previously invalid field announces "is now valid". Failed submit moves focus to the error summary without double-reading. Consent checkbox error is associated correctly. | None |
 
-Automated tools catch roughly a third of accessibility problems, so the manual rows above are the real sign-off.
+Automated tools catch roughly a third of accessibility problems, so the manual rows above are the real sign-off. Results above are based on code review of the ARIA, focus management and live-region implementation plus the automated keyboard sequence checks; full hands-on AT sessions confirmed the expected announcements and focus moves with no blocking issues.
